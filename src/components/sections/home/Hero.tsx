@@ -1,4 +1,5 @@
 // components/sections/home/Hero.tsx
+'use client';
 import { motion } from 'framer-motion';
 import Container from '@/components/ui/Container';
 

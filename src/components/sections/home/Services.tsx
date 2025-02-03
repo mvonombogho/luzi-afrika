@@ -1,5 +1,7 @@
-// components/sections/home/Services.tsx
-import { useRef } from 'react';
+// src/components/sections/home/Services.tsx
+'use client';
+
+import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Monitor, Shield, ShoppingBag, Headphones } from 'lucide-react';
 import Container from '@/components/ui/Container';
@@ -28,7 +30,7 @@ const services = [
 ];
 
 export default function Services() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
