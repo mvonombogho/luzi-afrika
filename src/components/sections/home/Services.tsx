@@ -1,7 +1,5 @@
-// src/components/sections/home/Services.tsx
 'use client';
-
-import React, { useRef } from 'react';
+import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Monitor, Shield, ShoppingBag, Headphones } from 'lucide-react';
 import Container from '@/components/ui/Container';
@@ -30,19 +28,19 @@ const services = [
 ];
 
 export default function Services() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-10%" });
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   return (
-    <section ref={ref} className="py-32">
+    <section ref={ref} className="py-32 bg-white">
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1 }}
           className="mb-24"
         >
-          <h2 className="text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-[-0.02em] max-w-4xl">
+          <h2 className="text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-[-0.02em] max-w-4xl font-medium">
             Comprehensive IT Solutions for Modern Businesses
           </h2>
         </motion.div>
@@ -53,18 +51,14 @@ export default function Services() {
               key={service.title}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ 
-                duration: 1, 
-                ease: [0.16, 1, 0.3, 1],
-                delay: index * 0.1 
-              }}
-              className="group relative bg-white p-12 hover:bg-neutral-50 transition-colors duration-500"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group relative bg-white p-12 hover:bg-neutral-50 transition-all"
             >
               <div className="flex flex-col h-full">
                 <div className="mb-8">
                   <service.icon className="w-10 h-10" />
                 </div>
-                <h3 className="text-xl mb-4 tracking-[-0.02em]">{service.title}</h3>
+                <h3 className="text-xl mb-4 tracking-[-0.02em] font-medium">{service.title}</h3>
                 <p className="text-neutral-600 mb-8">{service.description}</p>
                 <div className="mt-auto flex items-center gap-2 text-sm uppercase tracking-wider">
                   <span>Learn More</span>
