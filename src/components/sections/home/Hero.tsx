@@ -1,56 +1,58 @@
 'use client';
-import React from 'react';
+
 import { motion } from 'framer-motion';
-import Container from '@/components/ui/Container';
 
 export default function Hero() {
   return (
-    <motion.section 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="min-h-screen flex flex-col justify-center relative"
-    >
-      <Container>
-        <div className="max-w-[90%] mx-auto pt-20">
-          <motion.h1 
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="text-[clamp(2.5rem,8vw,5.5rem)] leading-[0.9] tracking-[-0.02em] mb-8 font-medium"
-          >
+    <div className="relative min-h-screen bg-white overflow-hidden">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="absolute inset-0 z-0"
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-neutral-50 to-white" />
+      </motion.div>
+
+      <div className="relative z-10 px-6 pt-[20vh]">
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="max-w-screen-xl mx-auto"
+        >
+          <h1 className="text-[clamp(3rem,10vw,8rem)] font-extralight leading-[0.9] tracking-[-0.02em] mb-16">
             Illuminating Africa's<br />
-            Digital Future Through<br />
-            Technology
-          </motion.h1>
-          
-          <motion.div 
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="flex flex-col gap-6 md:flex-row md:items-center"
-          >
-            <p className="text-xl max-w-xl text-neutral-600">
+            Digital Future<br />
+            Through Technology
+          </h1>
+
+          <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
+            <p className="text-xl md:text-2xl text-neutral-600 max-w-xl">
               Kenya's leading IT solutions provider, specializing in comprehensive support and innovative consultancy services.
             </p>
-            
-            <button className="px-8 py-4 bg-black text-white hover:bg-neutral-900 transition-all text-sm uppercase tracking-wider">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-black text-white text-sm uppercase tracking-widest hover:bg-neutral-900 transition-colors"
+            >
               Start a Project
-            </button>
-          </motion.div>
-        </div>
-      </Container>
+            </motion.button>
+          </div>
+        </motion.div>
+      </div>
 
-      <motion.div
+      <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-12 left-6"
+        transition={{ delay: 1 }}
+        className="absolute bottom-8 left-6 z-10"
       >
-        <div className="flex items-center gap-2 text-sm text-neutral-500">
-          <span className="w-12 h-px bg-neutral-300"></span>
-          <span className="uppercase tracking-wider">Scroll</span>
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-px bg-neutral-400" />
+          <span className="text-sm text-neutral-400 uppercase tracking-widest">Scroll</span>
         </div>
       </motion.div>
-    </motion.section>
+    </div>
   );
 }

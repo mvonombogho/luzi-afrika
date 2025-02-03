@@ -11,10 +11,20 @@ const config: Config = {
       colors: {
         primary: "#000000",
         secondary: "#FFFFFF",
-        accent: "#FF0000", // You can change this to your brand color
+        accent: "#FF0000",
       },
       height: {
         screen: '100dvh',
+      },
+      fontWeight: {
+        extralight: '200',
+      },
+      letterSpacing: {
+        'widest': '.2em',
+      },
+      fontSize: {
+        'hero': 'clamp(3rem, 10vw, 8rem)',
+        'section': 'clamp(2.5rem, 6vw, 4rem)',
       },
       animation: {
         "fade-in": "fade-in 0.5s ease-in-out forwards",

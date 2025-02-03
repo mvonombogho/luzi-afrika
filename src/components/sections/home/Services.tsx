@@ -1,8 +1,8 @@
 'use client';
-import React from 'react';
+
+import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Monitor, Shield, ShoppingBag, Headphones } from 'lucide-react';
-import Container from '@/components/ui/Container';
 
 const services = [
   {
@@ -28,39 +28,35 @@ const services = [
 ];
 
 export default function Services() {
-  const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-20%" });
 
   return (
-    <section ref={ref} className="py-32 bg-white">
-      <Container>
-        <motion.div
+    <section ref={ref} className="py-32 px-6 bg-white">
+      <div className="max-w-screen-xl mx-auto">
+        <motion.h2 
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1 }}
-          className="mb-24"
+          transition={{ duration: 0.8 }}
+          className="text-[clamp(2.5rem,6vw,4rem)] font-extralight leading-[1.1] tracking-[-0.02em] max-w-4xl mb-24"
         >
-          <h2 className="text-[clamp(2rem,5vw,3.5rem)] leading-tight tracking-[-0.02em] max-w-4xl font-medium">
-            Comprehensive IT Solutions for Modern Businesses
-          </h2>
-        </motion.div>
+          Comprehensive IT Solutions for Modern Businesses
+        </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-neutral-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 border-t border-neutral-200">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative bg-white p-12 hover:bg-neutral-50 transition-all"
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group border-b border-r border-neutral-200 p-12 hover:bg-neutral-50 transition-colors duration-300"
             >
               <div className="flex flex-col h-full">
-                <div className="mb-8">
-                  <service.icon className="w-10 h-10" />
-                </div>
-                <h3 className="text-xl mb-4 tracking-[-0.02em] font-medium">{service.title}</h3>
+                <service.icon className="w-10 h-10 mb-8" />
+                <h3 className="text-xl font-light mb-4">{service.title}</h3>
                 <p className="text-neutral-600 mb-8">{service.description}</p>
-                <div className="mt-auto flex items-center gap-2 text-sm uppercase tracking-wider">
+                <div className="mt-auto flex items-center gap-2 text-sm uppercase tracking-widest">
                   <span>Learn More</span>
                   <span className="w-6 h-px bg-black group-hover:w-12 transition-all duration-300" />
                 </div>
@@ -68,7 +64,7 @@ export default function Services() {
             </motion.div>
           ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }
