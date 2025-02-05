@@ -1,22 +1,30 @@
-import type { Config } from "tailwindcss";
+// File: tailwind.config.ts
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  darkMode: ["class"],
   content: [
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  prefix: "",
   theme: {
-    extend: {
-      colors: {
-        foreground: 'rgb(var(--foreground) / <alpha-value>)',
-        background: 'rgb(var(--background) / <alpha-value>)',
-      },
-      fontFamily: {
-        sans: ['var(--font-neue)'],
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
       },
     },
+    extend: {
+      fontFamily: {
+        space: ['Space Grotesk', 'sans-serif'],
+      },
+      // Rest of the configuration remains the same...
+    },
   },
-  plugins: [],
-};
+  plugins: [require("tailwindcss-animate")],
+} satisfies Config;
 
 export default config;

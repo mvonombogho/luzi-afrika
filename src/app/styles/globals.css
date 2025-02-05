@@ -145,3 +145,18 @@ body {
 a, button, [role="button"] {
   cursor: none;
 }
+
+html.has-smooth-scroll {
+  overflow: hidden;
+}
+
+.smooth-wrapper {
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+}
+
+.smooth-content {
+  min-height: 100vh;
+  width: 100%;
+}

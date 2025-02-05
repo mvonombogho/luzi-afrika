@@ -1,4 +1,4 @@
-// src/components/sections/home/Hero.tsx
+// File: src/components/sections/home/Hero.tsx
 'use client';
 
 import { useEffect, useRef } from 'react';
@@ -12,10 +12,45 @@ export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Parallax effect on scroll
+      // Initial animations
+      gsap.from(headingRef.current?.children || [], {
+        duration: 1.2,
+        y: 100,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "power4.out"
+      });
+
+      gsap.from(textRef.current, {
+        duration: 0.8,
+        y: 30,
+        opacity: 0,
+        ease: "power3.out",
+        delay: 0.8
+      });
+
+      gsap.from(buttonRef.current, {
+        duration: 0.6,
+        y: 20,
+        opacity: 0,
+        ease: "power3.out",
+        delay: 1
+      });
+
+      gsap.from(scrollIndicatorRef.current, {
+        duration: 0.6,
+        y: 20,
+        opacity: 0,
+        ease: "power3.out",
+        delay: 1.2
+      });
+
+      // Scroll animations
       gsap.to(headingRef.current, {
         scrollTrigger: {
           trigger: heroRef.current,
@@ -27,7 +62,6 @@ export default function Hero() {
         opacity: 0.5
       });
 
-      // Fade out text on scroll
       gsap.to(textRef.current, {
         scrollTrigger: {
           trigger: heroRef.current,
@@ -37,6 +71,16 @@ export default function Hero() {
         },
         y: 50,
         opacity: 0
+      });
+
+      // Scroll indicator animation
+      gsap.to(scrollIndicatorRef.current, {
+        y: 10,
+        opacity: 0.5,
+        duration: 1.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut"
       });
     }, heroRef);
 
@@ -48,6 +92,10 @@ export default function Hero() {
       ref={heroRef} 
       className="relative min-h-screen flex items-center px-6 overflow-hidden"
     >
+      {/* Background Elements */}
+      <div className="gradient-bg" />
+      <div className="bg-noise" />
+
       <div className="w-full max-w-screen-xl mx-auto pt-[15vh]">
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
@@ -59,9 +107,9 @@ export default function Hero() {
             ref={headingRef}
             className="text-[clamp(3rem,10vw,8rem)] font-light leading-[0.9] tracking-[-0.02em] mb-16"
           >
-            Illuminating Africa's<br />
-            Digital Future<br />
-            Through Technology
+            <span className="block">Illuminating Africa's</span>
+            <span className="block">Digital Future</span>
+            <span className="block">Through Technology</span>
           </h1>
 
           <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
@@ -72,6 +120,7 @@ export default function Hero() {
               Kenya's leading IT solutions provider, specializing in comprehensive support and innovative consultancy services.
             </p>
             <motion.button
+              ref={buttonRef}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="px-8 py-4 bg-black text-white text-sm uppercase tracking-[0.2em] hover:bg-neutral-900 transition-colors"
@@ -83,6 +132,7 @@ export default function Hero() {
       </div>
 
       <motion.div 
+        ref={scrollIndicatorRef}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
@@ -93,18 +143,6 @@ export default function Hero() {
           <span className="text-sm text-neutral-400 uppercase tracking-[0.2em]">Scroll</span>
         </div>
       </motion.div>
-
-      {/* Background gradient */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(247,247,247,1)_0%,rgba(255,255,255,1)_100%)]" />
-        <div 
-          className="absolute inset-0 opacity-50 pointer-events-none"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-            backgroundSize: '200px 200px'
-          }}
-        />
-      </div>
     </section>
   );
 }
