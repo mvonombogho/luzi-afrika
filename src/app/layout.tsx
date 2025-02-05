@@ -1,31 +1,56 @@
-import type { Metadata } from 'next';
+'use client';
+
+import { useEffect } from 'react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import Lenis from '@studio-freight/lenis';
 import { neue } from '@/lib/fonts';
+import CustomCursor from '@/components/ui/CustomCursor';
 import '@/app/styles/globals.css';
 
-export const metadata: Metadata = {
- title: 'Luzi Afrika | IT Solutions & Consultancy',
- description: 'Leading provider of comprehensive IT support and consultancy services in Kenya',
-};
+gsap.registerPlugin(ScrollTrigger);
 
 export default function RootLayout({
  children,
 }: {
  children: React.ReactNode
 }) {
+ useEffect(() => {
+   const lenis = new Lenis({
+     duration: 1.2,
+     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+     orientation: 'vertical',
+     smoothWheel: true,
+     smoothTouch: false,
+     touchMultiplier: 2,
+   });
+
+   const raf = (time: number) => {
+     lenis.raf(time);
+     requestAnimationFrame(raf);
+   };
+
+   requestAnimationFrame(raf);
+
+   gsap.ticker.add((time) => {
+     lenis.raf(time * 1000);
+   });
+
+   return () => {
+     lenis.destroy();
+     gsap.ticker.remove(raf);
+   };
+ }, []);
+
  return (
    <html lang="en" className={neue.variable}>
      <body className={`${neue.className} antialiased`}>
-       <div className="fixed inset-0 z-0">
-         <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(247,247,247,1)_0%,rgba(255,255,255,1)_100%)]" />
-         <div 
-           className="absolute inset-0 opacity-50 pointer-events-none"
-           style={{
-             backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
-             backgroundSize: '200px 200px'
-           }}
-         />
+       <CustomCursor />
+       <div className="fixed inset-0 -z-10">
+         <div className="absolute inset-0 bg-gradient-radial from-[#f7f7f7] to-white" />
+         <div className="bg-noise" />
        </div>
-       <main className="relative z-10">
+       <main id="smooth-content">
          {children}
        </main>
      </body>
