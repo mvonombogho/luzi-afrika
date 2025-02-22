@@ -1,0 +1,1 @@
+// Content of Footer.tsx that we created earlier
