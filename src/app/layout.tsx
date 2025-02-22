@@ -1,12 +1,12 @@
-// File: src/app/layout.tsx
 'use client';
 
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Navigation from '@/components/navigation/Navigation';
+import CustomCursor from '@/components/ui/CustomCursor';
 import LoadingScreen from '@/components/ui/LoadingScreen';
 import './styles/globals.css';
-import CustomCursor from '@/components/ui/CustomCursor';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,6 +27,7 @@ export default function RootLayout({
       <body className="bg-white text-black antialiased font-space">
         <CustomCursor />
         <LoadingScreen />
+        <Navigation />
         <main>
           {children}
         </main>
