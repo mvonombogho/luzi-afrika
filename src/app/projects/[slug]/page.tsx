@@ -5,9 +5,7 @@ import { useRouter } from 'next/navigation';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projects } from '@/data/projects';
-import ProjectHeader from '@/components/projects/ProjectHeader';
-import ProjectGallery from '@/components/projects/ProjectGallery';
-import ProjectDetails from '@/components/projects/ProjectDetails';
+import { ProjectHeader, ProjectGallery, ProjectDetails } from '@/components/projects';
 
 gsap.registerPlugin(ScrollTrigger);
 
