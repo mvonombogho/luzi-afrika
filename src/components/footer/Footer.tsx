@@ -4,116 +4,105 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 
-const navigation = {
-  main: [
-    { name: 'Services', href: '#services' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
-  ],
-  company: [
-    { name: 'About Us', href: '/about' },
-    { name: 'Careers', href: '/careers' },
-    { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
-  ],
-  social: [
-    { name: 'LinkedIn', href: '#' },
-    { name: 'Twitter', href: '#' },
-    { name: 'Instagram', href: '#' },
-  ],
-};
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative w-full bg-white overflow-hidden">
-      <div className="mx-auto max-w-screen-xl">
-        {/* Main footer content */}
-        <div className="grid grid-cols-1 gap-8 px-6 py-12 md:py-24 lg:grid-cols-4">
-          {/* Brand section */}
-          <div className="lg:col-span-2 space-y-8">
-            <Link 
-              href="/"
-              className="inline-block text-2xl font-light tracking-[-0.02em]"
-            >
-              LUZI AFRIKA
-            </Link>
-            <p className="text-neutral-600 max-w-md">
-              Transforming businesses through innovative technology solutions and comprehensive IT services tailored for the African market.
+    <footer className="w-full bg-neutral-950 text-white py-24 px-6">
+      <div className="max-w-screen-xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+          <div>
+            <h3 className="text-2xl font-light mb-8">LUZI AFRIKA</h3>
+            <p className="text-neutral-400 max-w-sm">
+              Illuminating Africa's Digital Future Through Technology
             </p>
-            <motion.a
-              href="/contact"
-              className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] hover:text-neutral-500 transition-colors group"
-              whileHover={{ x: 10 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-              Start a Project
-              <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </motion.a>
           </div>
 
-          {/* Navigation */}
-          <div className="space-y-8">
-            <p className="text-sm uppercase tracking-[0.2em]">Quick Links</p>
-            <ul className="space-y-4">
-              {navigation.main.map((item) => (
-                <li key={item.name}>
-                  <a
-                    href={item.href}
-                    className="text-neutral-600 hover:text-black transition-colors"
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Secondary navigation */}
-          <div className="space-y-8">
-            <p className="text-sm uppercase tracking-[0.2em]">Company</p>
-            <ul className="space-y-4">
-              {navigation.company.map((item) => (
-                <li key={item.name}>
-                  <a
-                    href={item.href}
-                    className="text-neutral-600 hover:text-black transition-colors"
-                  >
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-
-        {/* Bottom bar */}
-        <div className="border-t border-neutral-200">
-          <div className="px-6 py-8 md:flex md:items-center md:justify-between">
-            <div className="flex space-x-6 md:order-2">
-              {navigation.social.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-sm text-neutral-600 hover:text-black transition-colors flex items-center gap-1 group"
+          <div>
+            <h4 className="text-sm uppercase tracking-[0.2em] mb-6">Quick Links</h4>
+            <div className="space-y-4">
+              {[
+                { name: 'Home', href: '/' },
+                { name: 'Services', href: '#services' },
+                { name: 'About', href: '#about' },
+                { name: 'Projects', href: '#projects' },
+                { name: 'Contact', href: '#contact' }
+              ].map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="block text-neutral-400 hover:text-white transition-colors group flex items-center gap-2"
                 >
-                  {item.name}
-                  <ArrowUpRight 
-                    className="w-3 h-3 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" 
-                  />
-                </a>
+                  <span>{link.name}</span>
+                  <span className="w-4 h-px bg-neutral-400 group-hover:w-8 group-hover:bg-white transition-all duration-300" />
+                </Link>
               ))}
             </div>
-            <p className="mt-4 text-sm text-neutral-600 md:mt-0 md:order-1">
-              &copy; {currentYear} Luzi Afrika Limited. All rights reserved.
-            </p>
+          </div>
+
+          <div>
+            <h4 className="text-sm uppercase tracking-[0.2em] mb-6">Contact</h4>
+            <div className="space-y-4 text-neutral-400">
+              <a 
+                href="mailto:info@luziafrika.com" 
+                className="block hover:text-white transition-colors"
+              >
+                info@luziafrika.com
+              </a>
+              <a 
+                href="tel:+254700000000" 
+                className="block hover:text-white transition-colors"
+              >
+                +254 700 000 000
+              </a>
+              <address className="not-italic">
+                Luzi Afrika Limited<br />
+                Nairobi, Kenya
+              </address>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_0%_0%,rgba(247,247,247,1)_0%,rgba(255,255,255,0)_50%)]" />
+        <motion.div 
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1 }
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-neutral-800"
+        >
+          <div className="text-neutral-400 text-sm">
+            © {currentYear} Luzi Afrika Limited. All rights reserved.
+          </div>
+
+          <div className="flex gap-6 md:justify-end">
+            {[
+              { name: 'LinkedIn', url: '#' },
+              { name: 'Twitter', url: '#' },
+              { name: 'Instagram', url: '#' }
+            ].map((social) => (
+              <motion.a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ y: -2 }}
+                className="text-sm text-neutral-400 hover:text-white transition-colors flex items-center gap-1 group"
+              >
+                {social.name}
+                <ArrowUpRight 
+                  size={14} 
+                  className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+                />
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+      
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_100%_100%,rgba(45,45,45,1)_0%,rgba(0,0,0,0)_50%)]" />
     </footer>
   );
 }
