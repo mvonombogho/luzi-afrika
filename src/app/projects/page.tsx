@@ -1,50 +1,74 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
-import { projects } from '@/data/projects';
-import OptimizedImage from '@/components/common/OptimizedImage';
 
-gsap.registerPlugin(ScrollTrigger);
+import { projects } from '@/data/projects';
+import { validateData } from '@/utils/validation';
+import { projectMetaSchema } from '@/schemas/project';
+import { useAnalytics } from '@/hooks/useAnalytics';
+import { usePerformanceMonitoring } from '@/utils/performance';
+import OptimizedImage from '@/components/common/OptimizedImage';
 
 export default function ProjectsPage() {
   const sectionRef = useRef<HTMLElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
+  const [hasLoadedImages, setHasLoadedImages] = useState(false);
+
+  // Initialize analytics and performance monitoring
+  const { trackEvent } = useAnalytics();
+  const { trackRender, trackOperation } = usePerformanceMonitoring('ProjectsListPage');
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Header animations
-      gsap.from('.projects-header > *', {
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: 'power3.out',
-      });
+    // Track page render timing
+    const stopRenderTracking = trackRender();
 
-      // Projects grid animations
-      const projectCards = projectsRef.current?.children;
-      if (projectCards) {
-        gsap.from(projectCards, {
-          scrollTrigger: {
-            trigger: projectsRef.current,
-            start: 'top 80%',
-          },
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          stagger: 0.2,
-          ease: 'power3.out',
+    // Validate projects data
+    const validateProjects = async () => {
+      const stopValidation = trackOperation('validate_projects_data');
+      try {
+        await Promise.all(
+          projects.map(project => 
+            validateData(projectMetaSchema, project, 'ProjectsList')
+          )
+        );
+      } catch (error) {
+        trackEvent('projects_validation_error', {
+          error: error instanceof Error ? error.message : 'Unknown error'
         });
       }
-    }, sectionRef);
+      stopValidation();
+    };
 
-    return () => ctx.revert();
-  }, []);
+    validateProjects();
+
+    // Track projects list view
+    trackEvent('projects_list_view', {
+      projectCount: projects.length,
+      categories: [...new Set(projects.map(p => p.category))]
+    });
+
+    return () => {
+      stopRenderTracking();
+    };
+  }, [trackEvent, trackOperation, trackRender]);
+
+  // Track when all images have loaded
+  const handleAllImagesLoaded = () => {
+    if (!hasLoadedImages) {
+      setHasLoadedImages(true);
+      trackEvent('all_project_images_loaded', {
+        timeToLoad: performance.now()
+      });
+    }
+  };
+
+  // Track individual image loads
+  const handleImageLoad = (slug: string) => {
+    trackEvent('project_thumbnail_load', { slug });
+  };
 
   return (
     <main ref={sectionRef} className="pt-32 pb-24">
@@ -79,10 +103,12 @@ export default function ProjectsPage() {
                 key={project.slug}
                 href={`/projects/${project.slug}`}
                 className="group"
+                onClick={() => trackEvent('project_card_click', { slug: project.slug })}
               >
                 <motion.article
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
                   <div className="relative aspect-[4/3] mb-6 overflow-hidden rounded-lg">
@@ -92,6 +118,12 @@ export default function ProjectsPage() {
                       width={600}
                       height={450}
                       className="group-hover:scale-105 transition-transform duration-500"
+                      onLoad={() => {
+                        handleImageLoad(project.slug);
+                        if (index === projects.length - 1) {
+                          handleAllImagesLoaded();
+                        }
+                      }}
                     />
                   </div>
 
