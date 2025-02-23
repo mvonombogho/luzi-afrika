@@ -1,164 +1,136 @@
-export interface Project {
-  slug: string;
-  title: string;
-  category: string;
-  description: string;
-  fullDescription: string;
-  image: string;
-  gallery: string[];
-  client: string;
-  duration: string;
-  technologies: string[];
-  challenges: string[];
-  solutions: string[];
-  outcomes: string[];
-  testimonial?: {
-    quote: string;
-    author: string;
-    role: string;
-  };
-}
+import { Project } from '@/types/project';
 
-export const projects: Record<string, Project> = {
-  'financial-technology': {
-    slug: 'financial-technology',
-    title: "Financial Technology",
-    category: "Banking & Finance",
-    description: "Modernizing banking infrastructure and security systems for enhanced digital transactions.",
-    fullDescription: `Our comprehensive banking infrastructure modernization project delivered secure, scalable solutions that transformed the client's digital banking capabilities. The implementation included real-time transaction processing, enhanced security protocols, and seamless integration with existing systems.
-
-    Working closely with the client's team, we developed a robust architecture that not only met current needs but also provided a foundation for future growth. The solution encompassed mobile banking capabilities, fraud detection systems, and automated compliance reporting.`,
-    image: "https://picsum.photos/1200/800?random=1",
-    gallery: [
-      "https://picsum.photos/800/600?random=1",
-      "https://picsum.photos/800/600?random=2",
-      "https://picsum.photos/800/600?random=3"
+export const projects: Project[] = [
+  {
+    slug: 'enterprise-infrastructure-upgrade',
+    title: 'Enterprise Infrastructure Upgrade',
+    category: 'Hardware Support',
+    description: 'Complete IT infrastructure overhaul for a major financial institution, improving system performance by 200%.',
+    image: '/images/projects/infrastructure.jpg',
+    client: 'Leading East African Bank',
+    duration: '6 months',
+    completionDate: 'December 2024',
+    services: [
+      'Infrastructure Assessment',
+      'Hardware Upgrade',
+      'Network Optimization',
+      'System Migration',
+      'Staff Training'
     ],
-    client: "Major Regional Bank",
-    duration: "8 months",
+    challenge: 'The client was facing significant performance issues with their legacy infrastructure, resulting in slow transaction processing and frequent system downtimes. Their aging hardware and fragmented network architecture were becoming major bottlenecks for their growing digital banking operations.',
+    solution: 'We implemented a comprehensive infrastructure upgrade program that included modernizing their server architecture, optimizing network topology, and implementing robust redundancy systems. The solution involved deploying high-performance servers, upgrading network equipment, and implementing advanced monitoring systems.',
+    results: [
+      '200% improvement in system performance',
+      'Reduced system downtime by 99.9%',
+      'Increased transaction processing capacity by 300%',
+      'Reduced operational costs by 40%',
+      'Enhanced security compliance'
+    ],
     technologies: [
-      "Cloud Infrastructure",
-      "Cybersecurity",
-      "API Integration",
-      "Real-time Processing",
-      "Data Analytics"
-    ],
-    challenges: [
-      "Legacy system integration",
-      "Real-time data synchronization",
-      "Regulatory compliance",
-      "Zero-downtime deployment"
-    ],
-    solutions: [
-      "Microservices architecture",
-      "Automated testing pipeline",
-      "Phased deployment strategy",
-      "24/7 monitoring system"
-    ],
-    outcomes: [
-      "40% reduction in transaction processing time",
-      "99.99% system uptime",
-      "Enhanced security protocols",
-      "Improved customer satisfaction"
+      'Dell PowerEdge Servers',
+      'Cisco Networking Equipment',
+      'VMware Virtualization',
+      'NetApp Storage Solutions',
+      'Zabbix Monitoring System'
     ],
     testimonial: {
-      quote: "The transformation of our digital infrastructure has positioned us at the forefront of modern banking. The team's expertise and dedication were crucial to this success.",
-      author: "John Doe",
-      role: "CTO, Regional Bank"
-    }
+      quote: 'The infrastructure upgrade has transformed our operations. We\'ve seen remarkable improvements in performance and reliability.',
+      author: 'John Doe',
+      position: 'CTO',
+      company: 'Leading East African Bank'
+    },
+    gallery: [
+      '/images/projects/infrastructure/server-room.jpg',
+      '/images/projects/infrastructure/network-setup.jpg',
+      '/images/projects/infrastructure/monitoring-dashboard.jpg'
+    ]
   },
-  'healthcare-systems': {
-    slug: 'healthcare-systems',
-    title: "Healthcare Systems",
-    category: "Healthcare",
-    description: "Digital transformation of medical record management and patient care systems.",
-    fullDescription: `We implemented a comprehensive electronic medical record system that revolutionized patient data management and care coordination. The solution included secure patient portals, integrated scheduling systems, and robust data analytics capabilities.
-
-    The system was designed with a focus on user experience, ensuring that medical staff could efficiently access and update patient information while maintaining strict privacy standards.`,
-    image: "https://picsum.photos/1200/800?random=2",
-    gallery: [
-      "https://picsum.photos/800/600?random=4",
-      "https://picsum.photos/800/600?random=5",
-      "https://picsum.photos/800/600?random=6"
+  {
+    slug: 'cloud-migration-solution',
+    title: 'Cloud Migration Solution',
+    category: 'Software Solutions',
+    description: 'Seamless migration of legacy systems to cloud infrastructure for a manufacturing company.',
+    image: '/images/projects/cloud.jpg',
+    client: 'Major Manufacturing Company',
+    duration: '4 months',
+    completionDate: 'January 2025',
+    services: [
+      'Cloud Strategy Development',
+      'Migration Planning',
+      'Implementation',
+      'Training & Support',
+      'Performance Optimization'
     ],
-    client: "Private Hospital Network",
-    duration: "12 months",
+    challenge: 'The client needed to modernize their operations by moving from on-premises infrastructure to cloud-based solutions while ensuring minimal disruption to their manufacturing processes and maintaining data integrity.',
+    solution: 'We developed a phased migration strategy that included careful planning, testing, and implementation. Our team used a hybrid approach initially, gradually moving systems to the cloud while maintaining essential on-premises components during the transition.',
+    results: [
+      'Reduced IT infrastructure costs by 60%',
+      'Improved system accessibility by 100%',
+      'Enhanced disaster recovery capabilities',
+      'Increased operational efficiency by 40%',
+      'Zero data loss during migration'
+    ],
     technologies: [
-      "EMR Systems",
-      "Data Security",
-      "Cloud Storage",
-      "Mobile Integration",
-      "AI Diagnostics"
-    ],
-    challenges: [
-      "Data migration complexity",
-      "Healthcare compliance",
-      "User training",
-      "System interoperability"
-    ],
-    solutions: [
-      "Custom migration tools",
-      "Compliance automation",
-      "Interactive training modules",
-      "API standardization"
-    ],
-    outcomes: [
-      "60% reduction in paperwork",
-      "Improved patient data accuracy",
-      "Faster care coordination",
-      "Enhanced reporting capabilities"
+      'AWS Cloud Services',
+      'Docker Containers',
+      'Kubernetes',
+      'Terraform',
+      'CloudWatch Monitoring'
     ],
     testimonial: {
-      quote: "This digital transformation has significantly improved our ability to provide quality patient care. The new system has exceeded our expectations.",
-      author: "Jane Smith",
-      role: "Medical Director"
-    }
+      quote: 'The cloud migration has revolutionized how we operate. Our systems are more reliable and accessible than ever.',
+      author: 'Jane Smith',
+      position: 'Operations Director',
+      company: 'Major Manufacturing Company'
+    },
+    gallery: [
+      '/images/projects/cloud/migration-dashboard.jpg',
+      '/images/projects/cloud/cloud-architecture.jpg',
+      '/images/projects/cloud/monitoring-system.jpg'
+    ]
   },
-  'education-platform': {
-    slug: 'education-platform',
-    title: "Education Platform",
-    category: "EdTech",
-    description: "Comprehensive learning management system enabling digital education.",
-    fullDescription: `Developed a cutting-edge learning management system that transformed the educational experience for both students and educators. The platform features interactive virtual classrooms, automated assessment tools, and comprehensive progress tracking.
-
-    We incorporated advanced learning analytics to provide insights into student performance and engagement, enabling personalized learning paths and early intervention strategies.`,
-    image: "https://picsum.photos/1200/800?random=3",
-    gallery: [
-      "https://picsum.photos/800/600?random=7",
-      "https://picsum.photos/800/600?random=8",
-      "https://picsum.photos/800/600?random=9"
+  {
+    slug: 'network-security-implementation',
+    title: 'Network Security Implementation',
+    category: 'Technical Support',
+    description: 'Comprehensive security system deployment for a healthcare provider, ensuring HIPAA compliance.',
+    image: '/images/projects/security.jpg',
+    client: 'Leading Healthcare Provider',
+    duration: '3 months',
+    completionDate: 'February 2025',
+    services: [
+      'Security Assessment',
+      'Firewall Implementation',
+      'Access Control Systems',
+      'Security Training',
+      'Compliance Documentation'
     ],
-    client: "International School Chain",
-    duration: "6 months",
+    challenge: 'The healthcare provider needed to strengthen their network security to protect patient data and ensure compliance with healthcare regulations while maintaining efficient access for healthcare professionals.',
+    solution: 'We implemented a multi-layered security approach including advanced firewalls, encrypted communication channels, and robust access control systems. The solution also included comprehensive staff training and documentation.',
+    results: [
+      'Achieved 100% compliance with regulations',
+      'Enhanced data protection measures',
+      'Reduced security incidents by 95%',
+      'Improved access control efficiency',
+      'Successfully passed security audits'
+    ],
     technologies: [
-      "React",
-      "Node.js",
-      "WebRTC",
-      "MongoDB",
-      "Learning Analytics"
-    ],
-    challenges: [
-      "Scalable video streaming",
-      "Offline access",
-      "Multi-device support",
-      "Content management"
-    ],
-    solutions: [
-      "Progressive web app",
-      "WebRTC optimization",
-      "Responsive design",
-      "Content delivery network"
-    ],
-    outcomes: [
-      "Successful remote learning implementation",
-      "Increased student engagement",
-      "Streamlined assessment process",
-      "Enhanced parent communication"
+      'Cisco Security Solutions',
+      'Palo Alto Firewalls',
+      'Microsoft Azure AD',
+      'Encrypted Communication Systems',
+      'Security Information and Event Management (SIEM)'
     ],
     testimonial: {
-      quote: "The platform has revolutionized how we deliver education. It's intuitive, engaging, and has made remote learning truly effective.",
-      author: "Robert Johnson",
-      role: "Principal"
-    }
+      quote: 'Our network security has never been stronger. The team\'s expertise in healthcare compliance was invaluable.',
+      author: 'Dr. Sarah Johnson',
+      position: 'IT Director',
+      company: 'Leading Healthcare Provider'
+    },
+    gallery: [
+      '/images/projects/security/security-dashboard.jpg',
+      '/images/projects/security/access-control.jpg',
+      '/images/projects/security/training-session.jpg'
+    ]
   }
-};
+];
