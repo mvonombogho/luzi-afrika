@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { MapPin, Mail, Phone, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Mail, Phone, MapPin } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,7 +38,7 @@ export default function Contact() {
 
     try {
       setIsSubmitting(true);
-      // Add your form submission logic here
+      // Add form submission logic here
       setSubmitStatus('success');
       formRef.current.reset();
     } catch (error) {
@@ -54,49 +54,83 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative w-full py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-neutral-950 text-white"
+      className="relative w-full py-32 px-6 bg-white overflow-hidden"
     >
       <div className="max-w-screen-xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
-          <div className="contact-content space-y-8 sm:space-y-12">
-            <h2 className="text-[clamp(2rem,5vw,4rem)] font-light leading-[1.1] tracking-[-0.02em]">
-              Let's Work<br />Together
-            </h2>
-            
+          <div className="contact-content space-y-12">
+            <div className="space-y-6">
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-[clamp(2.5rem,6vw,4rem)] font-light leading-[1.1] tracking-[-0.02em]"
+              >
+                Let's Work<br />Together
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-neutral-600 text-lg max-w-lg"
+              >
+                Ready to transform your business with innovative technology solutions? Get in touch with us today.
+              </motion.p>
+            </div>
+
             <div className="space-y-8">
-              <div>
-                <h3 className="text-sm uppercase tracking-[0.2em] mb-4">Contact</h3>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="space-y-4"
+              >
+                <p className="text-sm uppercase tracking-[0.2em]">Contact</p>
                 <div className="space-y-4">
                   <a 
                     href="mailto:info@luziafrika.com"
-                    className="flex items-center gap-3 text-neutral-400 hover:text-white transition-colors group"
+                    className="flex items-center gap-3 text-neutral-600 hover:text-black transition-colors group"
                   >
                     <Mail size={16} className="opacity-60 group-hover:opacity-100" />
                     <span>info@luziafrika.com</span>
                   </a>
                   <a 
                     href="tel:+254700000000"
-                    className="flex items-center gap-3 text-neutral-400 hover:text-white transition-colors group"
+                    className="flex items-center gap-3 text-neutral-600 hover:text-black transition-colors group"
                   >
                     <Phone size={16} className="opacity-60 group-hover:opacity-100" />
                     <span>+254 700 000 000</span>
                   </a>
                 </div>
-              </div>
-              
-              <div>
-                <h3 className="text-sm uppercase tracking-[0.2em] mb-4">Visit</h3>
-                <div className="flex items-start gap-3 text-neutral-400">
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="space-y-4"
+              >
+                <p className="text-sm uppercase tracking-[0.2em]">Office</p>
+                <div className="flex items-start gap-3 text-neutral-600">
                   <MapPin size={16} className="opacity-60 mt-1" />
                   <address className="not-italic">
                     Luzi Afrika Limited<br />
                     Nairobi, Kenya
                   </address>
                 </div>
-              </div>
-              
-              <div className="pt-4">
-                <h3 className="text-sm uppercase tracking-[0.2em] mb-4">Connect</h3>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                className="space-y-4"
+              >
+                <p className="text-sm uppercase tracking-[0.2em]">Social</p>
                 <div className="flex flex-wrap gap-6">
                   {[
                     { name: 'LinkedIn', url: '#' },
@@ -108,7 +142,7 @@ export default function Contact() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-neutral-400 hover:text-white transition-colors flex items-center gap-2 group"
+                      className="text-sm text-neutral-600 hover:text-black transition-colors flex items-center gap-2 group"
                     >
                       {social.name}
                       <ArrowUpRight 
@@ -118,7 +152,7 @@ export default function Contact() {
                     </a>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
 
@@ -134,7 +168,7 @@ export default function Contact() {
                   id="name"
                   required
                   disabled={isSubmitting}
-                  className="w-full bg-transparent border-b border-neutral-800 py-2 focus:outline-none focus:border-white transition-colors disabled:opacity-50 text-base sm:text-lg"
+                  className="w-full bg-transparent border-b border-neutral-200 py-2 focus:outline-none focus:border-black transition-colors disabled:opacity-50 text-base sm:text-lg"
                 />
               </div>
 
@@ -148,7 +182,20 @@ export default function Contact() {
                   id="email"
                   required
                   disabled={isSubmitting}
-                  className="w-full bg-transparent border-b border-neutral-800 py-2 focus:outline-none focus:border-white transition-colors disabled:opacity-50 text-base sm:text-lg"
+                  className="w-full bg-transparent border-b border-neutral-200 py-2 focus:outline-none focus:border-black transition-colors disabled:opacity-50 text-base sm:text-lg"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="company" className="text-sm uppercase tracking-[0.2em] mb-2 block">
+                  Company
+                </label>
+                <input
+                  type="text"
+                  name="company"
+                  id="company"
+                  disabled={isSubmitting}
+                  className="w-full bg-transparent border-b border-neutral-200 py-2 focus:outline-none focus:border-black transition-colors disabled:opacity-50 text-base sm:text-lg"
                 />
               </div>
 
@@ -162,18 +209,18 @@ export default function Contact() {
                   required
                   disabled={isSubmitting}
                   rows={4}
-                  className="w-full bg-transparent border-b border-neutral-800 py-2 focus:outline-none focus:border-white transition-colors resize-none disabled:opacity-50 text-base sm:text-lg"
+                  className="w-full bg-transparent border-b border-neutral-200 py-2 focus:outline-none focus:border-black transition-colors resize-none disabled:opacity-50 text-base sm:text-lg"
                 />
               </div>
 
               {submitStatus === 'success' && (
-                <div className="px-4 py-3 bg-green-900/20 text-green-400 text-sm">
+                <div className="px-4 py-3 bg-green-50 text-green-600 text-sm rounded-sm">
                   Message sent successfully!
                 </div>
               )}
               
               {submitStatus === 'error' && (
-                <div className="px-4 py-3 bg-red-900/20 text-red-400 text-sm">
+                <div className="px-4 py-3 bg-red-50 text-red-600 text-sm rounded-sm">
                   Failed to send message. Please try again.
                 </div>
               )}
@@ -182,7 +229,7 @@ export default function Contact() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 disabled={isSubmitting}
-                className="w-full sm:w-auto px-8 py-4 bg-white text-black text-sm uppercase tracking-[0.2em] hover:bg-neutral-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full sm:w-auto px-8 py-4 bg-black text-white text-sm uppercase tracking-[0.2em] hover:bg-neutral-900 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </motion.button>
@@ -191,7 +238,7 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_100%_0%,rgba(45,45,45,1)_0%,rgba(0,0,0,0)_50%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_100%_0%,rgba(247,247,247,1)_0%,rgba(255,255,255,0)_50%)]" />
     </section>
   );
 }
