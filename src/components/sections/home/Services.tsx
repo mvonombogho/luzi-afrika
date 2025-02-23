@@ -1,107 +1,150 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Monitor, Shield, ShoppingBag, Headphones, Bot, Code, Server, Cpu } from 'lucide-react';
+import { useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import gsap from 'gsap';
+import { ArrowUpRight } from 'lucide-react';
 
 const services = [
   {
-    icon: Bot,
-    title: "Custom AI Agents",
-    description: "Develop tailored AI agents for task automation, customer service, and business process optimization.",
+    title: 'Hardware Support & Maintenance',
+    description: 'Comprehensive computer and network equipment maintenance, upgrades, and repairs to keep your infrastructure running at peak performance.',
+    features: [
+      'System health checks',
+      'Hardware upgrades',
+      'Network equipment setup',
+      'Preventive maintenance'
+    ]
   },
   {
-    icon: Server,
-    title: "AI-Powered SaaS",
-    description: "Build scalable software solutions enhanced with artificial intelligence capabilities.",
+    title: 'Software Solutions',
+    description: 'End-to-end software support including installation, updates, security solutions, and data backup to protect your digital assets.',
+    features: [
+      'Software licensing',
+      'System updates',
+      'Security solutions',
+      'Data backup'
+    ]
   },
   {
-    icon: Monitor,
-    title: "Hardware Support",
-    description: "Comprehensive IT infrastructure maintenance ensuring peak performance.",
+    title: 'IT Procurement',
+    description: 'Strategic IT equipment sourcing with competitive pricing through our established supplier networks.',
+    features: [
+      'Equipment sourcing',
+      'Vendor management',
+      'Bulk purchasing',
+      'Warranty handling'
+    ]
   },
   {
-    icon: Shield,
-    title: "Software Solutions",
-    description: "End-to-end software management and security implementations.",
-  },
-  {
-    icon: ShoppingBag,
-    title: "IT Procurement",
-    description: "Strategic technology sourcing with competitive advantage.",
-  },
-  {
-    icon: Headphones,
-    title: "Technical Support",
-    description: "Round-the-clock expert assistance for seamless operations.",
-  },
+    title: 'Technical Support',
+    description: 'Reliable on-site and remote support with quick response times to minimize business disruptions.',
+    features: [
+      'Remote support',
+      'Network troubleshooting',
+      'User training',
+      'Email configuration'
+    ]
+  }
 ];
 
-export default function Services() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-10%" });
+const Services = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Heading animation
+      gsap.from(headingRef.current, {
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: 'top bottom',
+          end: 'bottom center',
+          scrub: 1
+        },
+        y: 100,
+        opacity: 0
+      });
+
+      // Cards animation
+      const cards = cardsRef.current?.children;
+      if (cards) {
+        gsap.from(cards, {
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: 'top bottom',
+            end: 'center center',
+            scrub: 1
+          },
+          y: 100,
+          opacity: 0,
+          stagger: 0.2
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section 
+    <section
       id="services"
-      ref={ref} 
-      className="relative min-h-screen w-full py-32 px-6"
+      ref={sectionRef}
+      className="py-24 md:py-32 px-6 bg-neutral-50"
     >
       <div className="max-w-screen-xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="mb-24"
-        >
-          <h2 className="text-[clamp(2.5rem,6vw,4rem)] font-light leading-[1.1] tracking-[-0.02em]">
-            Comprehensive Digital<br />
-            Solutions for Growth
+        <div className="mb-16 md:mb-24">
+          <h2
+            ref={headingRef}
+            className="text-4xl md:text-5xl lg:text-6xl font-light tracking-[-0.02em]"
+          >
+            Our Services
           </h2>
-        </motion.div>
+        </div>
 
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-neutral-200"
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={{
-            visible: {
-              transition: {
-                staggerChildren: 0.1
-              }
-            }
-          }}
+        <div
+          ref={cardsRef}
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-              }}
-              className="group relative border-b border-neutral-200 lg:border-l lg:last:border-r p-12 hover:bg-neutral-50/80 transition-colors duration-500"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className="group bg-white p-8 rounded-lg hover:shadow-xl transition-all duration-300"
             >
-              <div className="flex flex-col h-full">
-                <div className="mb-8">
-                  <service.icon className="w-10 h-10" strokeWidth={1.5} />
-                </div>
-                <h3 className="text-xl font-light tracking-[-0.01em] mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-neutral-600 font-light mb-12">
-                  {service.description}
-                </p>
-                <div className="mt-auto flex items-center gap-2">
-                  <span className="text-sm uppercase tracking-[0.2em]">Learn More</span>
-                  <span className="w-6 h-px bg-black group-hover:w-12 transition-all duration-300" />
-                </div>
-              </div>
+              <h3 className="text-2xl font-light mb-4">{service.title}</h3>
+              <p className="text-neutral-600 mb-6">{service.description}</p>
+              
+              <ul className="space-y-3 mb-8">
+                {service.features.map((feature) => (
+                  <li key={feature} className="flex items-center gap-2 text-sm text-neutral-500">
+                    <span className="w-1 h-1 bg-neutral-300 rounded-full" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="flex items-center gap-2 text-sm font-medium group"
+              >
+                Learn More
+                <ArrowUpRight 
+                  size={16}
+                  className="transform transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </motion.button>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
-
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-neutral-50/50 to-neutral-50/80" />
     </section>
   );
-}
+};
+
+export default Services;
