@@ -1,4 +1,3 @@
-// File: src/components/sections/home/Hero.tsx
 'use client';
 
 import { useEffect, useRef } from 'react';
@@ -8,8 +7,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Hero() {
-  const heroRef = useRef<HTMLDivElement>(null);
+const Hero = () => {
+  const heroRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const textRef = useRef<HTMLParagraphElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -145,4 +144,6 @@ export default function Hero() {
       </motion.div>
     </section>
   );
-}
+};
+
+export default Hero;
