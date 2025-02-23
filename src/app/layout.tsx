@@ -4,9 +4,7 @@
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Navigation from '@/components/navigation/Navigation';
-import CustomCursor from '@/components/ui/CustomCursor';
-import LoadingScreen from '@/components/ui/LoadingScreen';
+import { Navigation, CustomCursor, LoadingScreen } from '@/components';
 import './styles/globals.css';
 
 gsap.registerPlugin(ScrollTrigger);
