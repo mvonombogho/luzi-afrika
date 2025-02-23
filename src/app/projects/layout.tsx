@@ -1,7 +1,9 @@
-'use client';
+import type { Metadata } from 'next';
 
-import Navigation from '@/components/navigation/Navigation';
-import CustomCursor from '@/components/ui/CustomCursor';
+export const metadata: Metadata = {
+  title: 'Projects | Luzi Afrika',
+  description: 'Explore our portfolio of successful IT projects and solutions across Africa',
+};
 
 export default function ProjectsLayout({
   children,
@@ -10,8 +12,6 @@ export default function ProjectsLayout({
 }) {
   return (
     <>
-      <CustomCursor />
-      <Navigation />
       {children}
     </>
   );
