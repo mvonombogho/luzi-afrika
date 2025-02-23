@@ -2,9 +2,19 @@
 
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Monitor, Shield, ShoppingBag, Headphones } from 'lucide-react';
+import { Monitor, Shield, ShoppingBag, Headphones, Bot, Code, Server, Cpu } from 'lucide-react';
 
 const services = [
+  {
+    icon: Bot,
+    title: "Custom AI Agents",
+    description: "Develop tailored AI agents for task automation, customer service, and business process optimization.",
+  },
+  {
+    icon: Server,
+    title: "AI-Powered SaaS",
+    description: "Build scalable software solutions enhanced with artificial intelligence capabilities.",
+  },
   {
     icon: Monitor,
     title: "Hardware Support",
@@ -33,6 +43,7 @@ export default function Services() {
 
   return (
     <section 
+      id="services"
       ref={ref} 
       className="relative min-h-screen w-full py-32 px-6"
     >
@@ -44,13 +55,13 @@ export default function Services() {
           className="mb-24"
         >
           <h2 className="text-[clamp(2.5rem,6vw,4rem)] font-light leading-[1.1] tracking-[-0.02em]">
-            Comprehensive IT Solutions<br />
-            for Modern Businesses
+            Comprehensive Digital<br />
+            Solutions for Growth
           </h2>
         </motion.div>
 
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 border-t border-neutral-200"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-neutral-200"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={{
@@ -68,7 +79,7 @@ export default function Services() {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
               }}
-              className="group relative border-b border-neutral-200 md:even:border-l p-12 hover:bg-neutral-50/80 transition-colors duration-500"
+              className="group relative border-b border-neutral-200 lg:border-l lg:last:border-r p-12 hover:bg-neutral-50/80 transition-colors duration-500"
             >
               <div className="flex flex-col h-full">
                 <div className="mb-8">
