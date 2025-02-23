@@ -99,7 +99,82 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
-      {/* To be continued in next chunk... */}
+      {/* Project Content */}
+      <section className="project-content px-6 mb-24">
+        <div className="max-w-screen-xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+            {/* Project Details Sidebar */}
+            <div className="space-y-8">
+              {/* Client Info */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="space-y-2"
+              >
+                <h3 className="text-sm uppercase tracking-[0.2em] text-neutral-500">Client</h3>
+                <p className="text-lg">{project.client}</p>
+              </motion.div>
+
+              {/* Project Duration */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="space-y-2"
+              >
+                <h3 className="text-sm uppercase tracking-[0.2em] text-neutral-500">Duration</h3>
+                <p className="text-lg">{project.duration}</p>
+              </motion.div>
+
+              {/* Services */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="space-y-4"
+              >
+                <h3 className="text-sm uppercase tracking-[0.2em] text-neutral-500">Services</h3>
+                <ul className="space-y-2">
+                  {project.services.map((service) => (
+                    <li 
+                      key={service}
+                      className="flex items-center gap-2 text-neutral-600"
+                    >
+                      <span className="w-1 h-1 bg-neutral-300 rounded-full" />
+                      {service}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Technologies */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="space-y-4"
+              >
+                <h3 className="text-sm uppercase tracking-[0.2em] text-neutral-500">Technologies</h3>
+                <ul className="space-y-2">
+                  {project.technologies.map((tech) => (
+                    <li 
+                      key={tech}
+                      className="flex items-center gap-2 text-neutral-600"
+                    >
+                      <span className="w-1 h-1 bg-neutral-300 rounded-full" />
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </div>
+
+            {/* Main content will be added in the next chunk */}
+            <div className="md:col-span-2"></div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
