@@ -9,7 +9,7 @@ import { ArrowUpRight } from 'lucide-react';
 gsap.registerPlugin(ScrollTrigger);
 
 const achievements = [
-  { number: "50+", label: "Projects Delivered" },
+  { number: "5+", label: "Projects Delivered" },
   { number: "95%", label: "Client Satisfaction" },
   { number: "24/7", label: "Support & Service" },
   { number: "100%", label: "Client Retention" }
