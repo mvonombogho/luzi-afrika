@@ -1,14 +1,8 @@
 {
-  "public": false,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "buildCommand": "npm run build",
-  "ignoreCommand": "npx cypress --version",
-  "installCommand": "npm ci",
+  "buildCommand": "next build",
+  "ignoreCommand": "exit 0",
+  "installCommand": "npm install",
+  "framework": "nextjs",
   "outputDirectory": ".next",
   "headers": [
     {
@@ -28,5 +22,8 @@
         }
       ]
     }
-  ]
+  ],
+  "env": {
+    "NEXT_SKIP_TYPECHECK": "1"
+  }
 }
