@@ -6,10 +6,14 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Navigation, CustomCursor, LoadingScreen, Footer } from '@/components';
 import ResponsiveChecker from '@/components/ui/ResponsiveChecker';
+import FramerMotionFix from '@/components/ui/FramerMotionFix';
 import { generateLocalBusinessSchema } from '@/lib/schema';
 import './styles/globals.css';
 
-gsap.registerPlugin(ScrollTrigger);
+// Register GSAP plugins
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function RootLayout({
   children,
@@ -18,6 +22,14 @@ export default function RootLayout({
 }) {
   // Generate local business schema for structured data
   const localBusinessSchema = generateLocalBusinessSchema();
+
+  // Fix for framer-motion issues during SSR
+  useEffect(() => {
+    // Fix Framer Motion React Context issues
+    if (typeof window !== 'undefined') {
+      window.__FRAMER_MOTION_REACT_CONTEXT_FALLBACK__ = true;
+    }
+  }, []);
 
   return (
     <html lang="en">
@@ -61,8 +73,22 @@ export default function RootLayout({
         
         {/* Canonical URL */}
         <link rel="canonical" href="https://luziafrika.com" />
+        
+        {/* Script to fix framer-motion SSR issues */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.__FRAMER_MOTION_REACT_CONTEXT_FALLBACK__ = true;
+              window.__FRAMER_MOTION_SSR_FALLBACK__ = true;
+              window.__NEXT_STRICT_MODE_WARNINGS__ = false;
+            `
+          }}
+        />
       </head>
       <body className="bg-white text-black antialiased font-space">
+        {/* Component to apply framer-motion fixes */}
+        <FramerMotionFix />
+        
         <div className="flex flex-col min-h-screen">
           <LoadingScreen />
           <CustomCursor />
