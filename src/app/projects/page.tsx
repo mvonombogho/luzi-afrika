@@ -1,3 +1,5 @@
+'use client';
+
 import { Suspense } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -67,13 +69,13 @@ export default async function ProjectsPage() {
             Contact our team today to discuss how we can help transform your IT infrastructure.
           </p>
           <Link href="/contact">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-8 py-4 bg-blue-500 text-white rounded-lg text-sm font-medium"
-            >
-              Contact Us
-            </motion.button>
+            <div className="inline-block">
+              <button 
+                className="px-8 py-4 bg-blue-500 text-white rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors"
+              >
+                Contact Us
+              </button>
+            </div>
           </Link>
         </div>
       </section>
