@@ -5,7 +5,8 @@ import Hero from '@/components/sections/home/Hero';
 import Services from '@/components/sections/home/Services';
 import About from '@/components/sections/home/About';
 import Projects from '@/components/sections/home/Projects';
-import Testimonials from '@/components/sections/home/Testimonials';
+// Import commented out temporarily as we're disabling the Testimonials section
+// import Testimonials from '@/components/sections/home/Testimonials';
 import HomeFAQ from '@/components/sections/home/HomeFAQ';
 import Contact from '@/components/sections/home/Contact';
 
@@ -17,7 +18,8 @@ export default function Home() {
       <Services />
       <About />
       <Projects />
-      <Testimonials />
+      {/* Testimonials section temporarily removed while business is starting up */}
+      {/* <Testimonials /> */}
       <HomeFAQ />
       <Contact />
     </div>
