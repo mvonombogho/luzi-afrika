@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn.sanity.io',
       },
+      {
+        protocol: 'https',
+        hostname: '*.sanity.io',
+      },
     ],
   },
   // For production builds - ignore TypeScript errors
@@ -26,6 +30,13 @@ const nextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  // Experimental features to help with build
+  experimental: {
+    serverComponentsExternalPackages: ['framer-motion'],
+    esmExternals: 'loose',
+  },
+  // Output as standalone for easier deployment
+  output: 'standalone',
 }
 
 module.exports = nextConfig
