@@ -72,11 +72,11 @@ export default function ContactPage() {
                       <span>info@luziafrika.com</span>
                     </a>
                     <a 
-                      href="tel:+254700000000"
+                      href="tel:+254701868849"
                       className="flex items-center gap-3 text-neutral-600 hover:text-black transition-colors group"
                     >
                       <Phone size={18} className="opacity-60 group-hover:opacity-100" />
-                      <span>+254 700 000 000</span>
+                      <span>+254 701 868 849</span>
                     </a>
                   </div>
                 </div>
@@ -87,9 +87,8 @@ export default function ContactPage() {
                     <MapPin size={18} className="opacity-60 mt-1" />
                     <address className="not-italic">
                       Luzi Afrika Limited<br />
-                      Karen Office Park<br />
-                      Langata Road<br />
-                      Nairobi, Kenya
+                      Kiserian, Sankale Road<br />
+                      Kajiado, Kenya
                     </address>
                   </div>
                 </div>
