@@ -5,6 +5,16 @@
 # Set environment variables for build
 export NEXT_SKIP_TYPECHECK=1
 export NEXT_TELEMETRY_DISABLED=1
+export NODE_ENV=production
+
+# Disable React concurrent features that can cause issues with framer-motion
+export DISABLE_REACT_CONCURRENT=true
+
+# Disable SSG rendering for static files
+export NEXT_DISABLE_SSG_COMPONENTS=true
+
+# Turn off static optimization
+export NEXT_STATIC_GEN_BAILOUT=true
 
 # Print some debug information
 echo "Node version: $(node -v)"
