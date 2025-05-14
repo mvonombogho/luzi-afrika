@@ -1,37 +1,34 @@
 'use client';
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import PageHeader from '@/components/ui/PageHeader';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
-// Simple placeholder page for the disabled team/people section
-const PeoplePage = () => {
+// Export runtime configuration to ensure client-side rendering
+export const dynamic = 'force-dynamic';
+
+export default function PeoplePage() {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simple loading state to show we're client-side rendering
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      router.push('/');
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [router]);
+
   return (
-    <main className="min-h-screen">
-      <PageHeader 
-        title="Our Team"
-        subtitle="This section is coming soon"
-      />
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-screen-xl mx-auto text-center">
-          <p className="text-lg text-neutral-600 mb-10">
-            We're currently building our team page with information about our IT experts and specialists.
-            Please check back soon to meet the talented professionals behind LUZI AFRIKA LIMITED.
-          </p>
-          
-          <Link href="/">
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-8 py-4 bg-blue-500 text-white rounded-lg text-sm font-medium"
-            >
-              Return to Home
-            </motion.button>
-          </Link>
-        </div>
-      </section>
-    </main>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center p-8">
+        <h1 className="text-2xl font-light mb-4">Team Page</h1>
+        <p className="text-neutral-600 mb-8">
+          {isLoading ? 'Loading...' : 'Redirecting to home page...'}
+        </p>
+        <div className="w-8 h-8 border-t-4 border-blue-500 border-solid rounded-full animate-spin mx-auto"></div>
+      </div>
+    </div>
   );
-};
-
-export default PeoplePage;
+}
