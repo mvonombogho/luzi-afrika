@@ -137,12 +137,19 @@ export default function ContactPage() {
           <h2 className="text-3xl font-light mb-8 text-center">Find Us</h2>
           <div 
             ref={mapRef}
-            className="h-[400px] bg-neutral-200 rounded-lg"
+            className="h-[400px] rounded-lg overflow-hidden"
           >
-            {/* Map embed would go here */}
-            <div className="w-full h-full flex items-center justify-center text-neutral-500">
-              Interactive map will be displayed here
-            </div>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15952.334536149787!2d36.6205896!3d-1.4369095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f05ca9c27d7c5%3A0x5f7bfe0aabda8d90!2sKiserian%2C%20Kajiado%20County%2C%20Kenya!5e0!3m2!1sen!2s!4v1715669096740!5m2!1sen!2s"
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Luzi Afrika Limited Office Location"
+              className="rounded-lg"
+            />
           </div>
         </div>
       </section>
