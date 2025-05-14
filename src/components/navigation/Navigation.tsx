@@ -38,7 +38,11 @@ export default function Navigation() {
   };
 
   // Determine if we're on a dark page background based on pathname
-  const isDarkBackground = pathname.includes('/contact') || pathname.includes('/about');
+  // Now includes all main pages: contact, about, blog, services
+  const isDarkBackground = pathname.includes('/contact') || 
+                          pathname.includes('/about') || 
+                          pathname.includes('/blog') || 
+                          pathname.includes('/services');
 
   return (
     <>
