@@ -10,27 +10,7 @@ import PageHeader from '@/components/ui/PageHeader';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Team data
-const teamMembers = [
-  {
-    name: 'Israel Mvono',
-    role: 'Founder & CEO',
-    bio: 'Israel has over 15 years of experience in IT infrastructure management and strategic technology planning. He founded LUZI AFRIKA with a vision to empower African businesses through reliable technology solutions.',
-    imageUrl: '/placeholder-400-400.jpg'
-  },
-  {
-    name: 'Sarah Kimani',
-    role: 'Technical Director',
-    bio: 'With a background in network engineering and cybersecurity, Sarah leads our technical operations and ensures our service delivery meets the highest standards of quality and reliability.',
-    imageUrl: '/placeholder-400-400.jpg'
-  },
-  {
-    name: 'Joseph Omondi',
-    role: 'Client Relations Manager',
-    bio: 'Joseph brings his extensive experience in customer success to ensure our clients receive exceptional service. He works closely with clients to understand their needs and optimize their IT solutions.',
-    imageUrl: '/placeholder-400-400.jpg'
-  }
-];
+// Team data is removed
 
 // Company milestones
 const milestones = [
@@ -76,7 +56,6 @@ const AboutPage = () => {
   const visionRef = useRef<HTMLDivElement>(null);
   const valuesRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
-  const teamRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -131,22 +110,6 @@ const AboutPage = () => {
             scrub: 1
           },
           x: -50,
-          opacity: 0,
-          stagger: 0.2
-        });
-      }
-
-      // Team animation
-      if (teamRef.current) {
-        const teamItems = teamRef.current.querySelectorAll('.team-member');
-        gsap.from(teamItems, {
-          scrollTrigger: {
-            trigger: teamRef.current,
-            start: 'top bottom',
-            end: 'center center',
-            scrub: 1
-          },
-          y: 50,
           opacity: 0,
           stagger: 0.2
         });
@@ -256,35 +219,6 @@ const AboutPage = () => {
                 <div className="md:w-3/4">
                   <h3 className="text-xl font-light mb-3">{milestone.title}</h3>
                   <p className="text-neutral-400">{milestone.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-screen-xl mx-auto">
-          <h2 className="text-3xl font-light mb-12 text-center">Our Team</h2>
-          <div 
-            ref={teamRef}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
-          >
-            {teamMembers.map((member) => (
-              <div 
-                key={member.name}
-                className="team-member bg-neutral-50 rounded-lg overflow-hidden"
-              >
-                <div className="aspect-square bg-neutral-200">
-                  {/* Placeholder for team member photo */}
-                  <div className="w-full h-full flex items-center justify-center text-neutral-400">
-                    Photo
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-light mb-1">{member.name}</h3>
-                  <p className="text-blue-500 text-sm mb-4">{member.role}</p>
-                  <p className="text-neutral-600">{member.bio}</p>
                 </div>
               </div>
             ))}
