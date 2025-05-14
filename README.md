@@ -86,12 +86,35 @@ http://localhost:3000/studio
 
 ## Deployment
 
+### Deploying to Vercel
+
 The project is configured for easy deployment on Vercel:
 
-1. Push to GitHub
+1. Push your code to GitHub
 2. Connect your repository to Vercel
-3. Set up the required environment variables
-4. Deploy
+3. Set up the required environment variables in Vercel:
+   
+   | Variable | Description | Example Value |
+   |----------|-------------|---------------|
+   | `FROM_EMAIL` | Email address used as sender | `contact@your-domain.com` |
+   | `TO_EMAIL` | Email address to receive contacts | `info@your-domain.com` |
+   | `RESEND_API_KEY` | API key for Resend email service | `re_123456789` |
+   | `SANITY_PROJECT_ID` | Your Sanity project ID | `abc123def` |
+   | `SANITY_DATASET` | Your Sanity dataset | `production` |
+   | `SANITY_API_VERSION` | Sanity API version | `2023-08-01` |
+   | `NEXT_PUBLIC_SANITY_PROJECT_ID` | Same as SANITY_PROJECT_ID | `abc123def` |
+   | `NEXT_PUBLIC_SANITY_DATASET` | Same as SANITY_DATASET | `production` |
+
+4. Deploy your project
+5. Optional: Set up a custom domain in Vercel
+
+### Troubleshooting Deployment Issues
+
+If your deployment fails, check the following:
+
+1. **Email Configuration**: Make sure the `FROM_EMAIL` environment variable is set to a valid email address that Resend can use.
+2. **Cypress Type Errors**: The repository includes configuration to ignore TypeScript errors related to Cypress during build.
+3. **Vercel Build Settings**: If you're still having issues, try disabling TypeScript checks in your Vercel project settings.
 
 ## Contributing
 
