@@ -50,10 +50,10 @@ export const getProjectBySlugQuery = `
   }
 `;
 
-// Get project categories for filtering
+// Get project categories for filtering - Fixed query syntax
 export const getProjectCategoriesQuery = `
   *[_type == "project"] {
-    category
+    "category": category
   } | order(category) | unique
 `;
 
