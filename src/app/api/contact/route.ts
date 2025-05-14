@@ -3,7 +3,11 @@ import { Resend } from 'resend';
 import { z } from 'zod';
 
 // Initialize Resend with API key
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY || 'test_key_in_development');
+
+// Get email addresses from environment variables
+const fromEmail = process.env.FROM_EMAIL || 'no-reply@example.com';
+const toEmail = process.env.TO_EMAIL || 'info@luzi-afrika.com';
 
 // Define validation schema for contact form
 const contactFormSchema = z.object({
@@ -26,10 +30,24 @@ export async function POST(request: Request) {
     // Format the email content
     const { name, email, phone, company, message, service } = validatedData;
     
+    // Debug logging in development
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Email configuration:', { fromEmail, toEmail, resendApiKey: process.env.RESEND_API_KEY ? 'Set' : 'Not set' });
+    }
+    
+    // Skip actual sending in development if API key not set
+    if (!process.env.RESEND_API_KEY && process.env.NODE_ENV === 'development') {
+      console.log('Would send email with data:', validatedData);
+      return NextResponse.json(
+        { message: 'Email would be sent in production' },
+        { status: 200 }
+      );
+    }
+    
     // Send the email using Resend
     const result = await resend.emails.send({
-      from: 'contact@luzi-afrika.com', // Use your actual domain
-      to: 'info@luzi-afrika.com', // Replace with your recipient email
+      from: fromEmail,
+      to: toEmail,
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h1>New Contact Form Submission</h1>
