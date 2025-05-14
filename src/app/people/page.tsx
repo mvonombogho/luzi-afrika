@@ -4,12 +4,18 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import PageHeader from '@/components/ui/PageHeader';
 
+// Simple placeholder for disabled People page
 const PeoplePage = () => {
   const router = useRouter();
 
   // Redirect to home page since the people section is disabled for now
   useEffect(() => {
-    router.push('/');
+    // Optional: Add a small delay to allow the page to render before redirecting
+    const redirectTimer = setTimeout(() => {
+      router.push('/');
+    }, 500);
+
+    return () => clearTimeout(redirectTimer);
   }, [router]);
 
   return (
@@ -29,4 +35,5 @@ const PeoplePage = () => {
   );
 };
 
+// Make sure we export the component as default
 export default PeoplePage;
