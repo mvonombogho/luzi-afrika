@@ -122,13 +122,18 @@ const Footer = () => {
               <li className="flex items-start">
                 <MapPin className="text-neutral-600 mr-3 mt-1 flex-shrink-0" size={16} />
                 <span className="text-neutral-600 leading-relaxed">
-                  123 Business Park,<br />
-                  Nairobi, Kenya
+                  Kiserian, Sankale Road,<br />
+                  Kajiado, Kenya
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone className="text-neutral-600 mr-3 flex-shrink-0" size={16} />
-                <span className="text-neutral-600">+254 700 000 000</span>
+                <a 
+                  href="tel:+254701868849"
+                  className="text-neutral-600 hover:text-black transition-colors inline-block hover-link"
+                >
+                  +254 701 868 849
+                </a>
               </li>
               <li className="flex items-center">
                 <Mail className="text-neutral-600 mr-3 flex-shrink-0" size={16} />
@@ -156,7 +161,7 @@ const Footer = () => {
               Terms of Service
             </Link>
             <Link 
-              href="/privacy" 
+              href="/privacy-policy" 
               className="text-neutral-500 text-sm hover:text-black transition-colors"
             >
               Privacy Policy
