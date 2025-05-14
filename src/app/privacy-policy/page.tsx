@@ -79,9 +79,10 @@ const PrivacyPolicy = () => {
           </p>
           <p className="mb-4">
             Luzi Afrika Limited<br />
-            [Address]<br />
-            Email: privacy@luziafrika.com<br />
-            Phone: [Phone Number]
+            Kiserian, Sankale Road<br />
+            Kajiado, Kenya<br />
+            Email: info@luziafrika.com<br />
+            Phone: +254 701 868 849
           </p>
         </section>
 
@@ -93,7 +94,7 @@ const PrivacyPolicy = () => {
         </section>
 
         <p className="text-sm text-gray-600">
-          Last revised: February 2025
+          Last revised: May 2025
         </p>
       </div>
     </main>
