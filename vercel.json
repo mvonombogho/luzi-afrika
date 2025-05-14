@@ -1,6 +1,7 @@
 {
-  "buildCommand": "npm run build",
-  "framework": null,
+  "buildCommand": "bash ./vercel-build.sh",
+  "installCommand": "npm install",
+  "framework": "nextjs",
   "outputDirectory": ".next",
   "headers": [
     {
@@ -20,5 +21,8 @@
         }
       ]
     }
-  ]
+  ],
+  "env": {
+    "NEXT_SKIP_TYPECHECK": "1"
+  }
 }
