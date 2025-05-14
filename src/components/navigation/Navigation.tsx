@@ -37,6 +37,9 @@ export default function Navigation() {
     return pathname.startsWith(path);
   };
 
+  // Determine if we're on a dark page background based on pathname
+  const isDarkBackground = pathname.includes('/contact') || pathname.includes('/about');
+
   return (
     <>
       <motion.header
@@ -68,11 +71,16 @@ export default function Navigation() {
                 key={item.title}
                 href={item.href}
                 className={`text-sm uppercase tracking-[0.2em] transition-all duration-300 relative group
-                  ${isActive(item.href) ? 'opacity-100' : 'opacity-60 hover:opacity-100'}`}
+                  ${isActive(item.href) 
+                    ? isScrolled || !isDarkBackground ? 'opacity-100 text-black' : 'opacity-100 text-white' 
+                    : isScrolled || !isDarkBackground ? 'opacity-60 hover:opacity-100 text-black' : 'opacity-80 hover:opacity-100 text-white'}`}
               >
                 {item.title}
-                <span className={`absolute -bottom-2 left-0 w-full h-px bg-black transform origin-left transition-transform duration-300
-                  ${isActive(item.href) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} 
+                <span className={`absolute -bottom-2 left-0 w-full h-px transform origin-left transition-transform duration-300
+                  ${isActive(item.href) 
+                    ? 'scale-x-100' 
+                    : 'scale-x-0 group-hover:scale-x-100'}
+                  ${isScrolled || !isDarkBackground ? 'bg-black' : 'bg-white'}`} 
                 />
               </Link>
             ))}
@@ -81,7 +89,10 @@ export default function Navigation() {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-6 py-2 bg-black text-white text-sm uppercase tracking-[0.2em] hover:bg-neutral-900 transition-colors"
+                className={`px-6 py-2 text-sm uppercase tracking-[0.2em] transition-colors
+                  ${isScrolled || !isDarkBackground 
+                    ? 'bg-black text-white hover:bg-neutral-900' 
+                    : 'bg-white text-black hover:bg-neutral-100'}`}
               >
                 Get Started
               </motion.button>
@@ -90,7 +101,8 @@ export default function Navigation() {
 
           <button
             onClick={() => setIsOpen(true)}
-            className="md:hidden p-2 hover:opacity-60 transition-opacity"
+            className={`md:hidden p-2 hover:opacity-60 transition-opacity 
+              ${isScrolled || !isDarkBackground ? 'text-black' : 'text-white'}`}
           >
             <Menu size={24} />
           </button>
