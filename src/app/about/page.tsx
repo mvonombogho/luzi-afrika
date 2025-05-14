@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
 import gsap from 'gsap';
@@ -9,8 +10,6 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import PageHeader from '@/components/ui/PageHeader';
 
 gsap.registerPlugin(ScrollTrigger);
-
-// Team data is removed
 
 // Company milestones
 const milestones = [
@@ -151,11 +150,15 @@ const AboutPage = () => {
       <section className="py-20 px-6 bg-neutral-50">
         <div className="max-w-screen-xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            <div className="order-2 md:order-1 aspect-video bg-neutral-200 rounded-lg">
-              {/* Placeholder for vision image or video */}
-              <div className="w-full h-full flex items-center justify-center text-neutral-400">
-                Vision Image/Video
-              </div>
+            <div className="order-2 md:order-1 aspect-video rounded-lg overflow-hidden relative">
+              {/* Added proper image instead of placeholder */}
+              <Image 
+                src="https://picsum.photos/id/180/1200/800" 
+                alt="IT professionals discussing technology solutions"
+                fill
+                className="object-cover"
+                priority
+              />
             </div>
             <div ref={visionRef} className="order-1 md:order-2 flex flex-col justify-center">
               <h2 className="text-3xl font-light mb-6">Our Vision</h2>
