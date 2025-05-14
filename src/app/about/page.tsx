@@ -13,9 +13,9 @@ gsap.registerPlugin(ScrollTrigger);
 // Team data
 const teamMembers = [
   {
-    name: 'David Mwangi',
+    name: 'Israel Mvono',
     role: 'Founder & CEO',
-    bio: 'David has over 15 years of experience in IT infrastructure management and strategic technology planning. He founded LUZI AFRIKA with a vision to empower African businesses through reliable technology solutions.',
+    bio: 'Israel has over 15 years of experience in IT infrastructure management and strategic technology planning. He founded LUZI AFRIKA with a vision to empower African businesses through reliable technology solutions.',
     imageUrl: '/placeholder-400-400.jpg'
   },
   {
@@ -179,7 +179,7 @@ const AboutPage = () => {
                 "Our goal is to be the catalyst for digital transformation across Africa, helping businesses 
                 harness the power of technology to achieve their full potential."
               </blockquote>
-              <p className="mt-4 font-medium">— David Mwangi, Founder & CEO</p>
+              <p className="mt-4 font-medium">— Israel Mvono, Founder & CEO</p>
             </div>
           </div>
         </div>
