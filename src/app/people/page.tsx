@@ -1,39 +1,37 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 import PageHeader from '@/components/ui/PageHeader';
 
-// Simple placeholder for disabled People page
+// Simple placeholder page for the disabled team/people section
 const PeoplePage = () => {
-  const router = useRouter();
-
-  // Redirect to home page since the people section is disabled for now
-  useEffect(() => {
-    // Optional: Add a small delay to allow the page to render before redirecting
-    const redirectTimer = setTimeout(() => {
-      router.push('/');
-    }, 500);
-
-    return () => clearTimeout(redirectTimer);
-  }, [router]);
-
   return (
     <main className="min-h-screen">
       <PageHeader 
         title="Our Team"
-        subtitle="This section is currently under development"
+        subtitle="This section is coming soon"
       />
       <section className="py-20 px-6 bg-white">
-        <div className="max-w-screen-xl mx-auto">
-          <p className="text-center text-lg text-neutral-600">
-            We're currently building our team page. Please check back soon.
+        <div className="max-w-screen-xl mx-auto text-center">
+          <p className="text-lg text-neutral-600 mb-10">
+            We're currently building our team page with information about our IT experts and specialists.
+            Please check back soon to meet the talented professionals behind LUZI AFRIKA LIMITED.
           </p>
+          
+          <Link href="/">
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-8 py-4 bg-blue-500 text-white rounded-lg text-sm font-medium"
+            >
+              Return to Home
+            </motion.button>
+          </Link>
         </div>
       </section>
     </main>
   );
 };
 
-// Make sure we export the component as default
 export default PeoplePage;
