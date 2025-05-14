@@ -29,12 +29,16 @@
     ]
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
-, "next.config.js"  ],
+    ".next/types/**/*.ts",
+    "next.config.js"
+  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "cypress.config.ts",
+    "cypress/**/*.ts",
+    "cypress/**/*.tsx"
   ]
 }
