@@ -30,11 +30,8 @@ const nextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-  // Experimental features to help with build
-  experimental: {
-    serverComponentsExternalPackages: ['framer-motion'],
-    esmExternals: 'loose',
-  },
+  // Disable React Strict Mode for now (can help with framer-motion issues)
+  reactStrictMode: false,
   // Output as standalone for easier deployment
   output: 'standalone',
 }
