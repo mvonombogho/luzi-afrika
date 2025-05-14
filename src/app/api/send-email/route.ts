@@ -3,8 +3,11 @@ import { Resend } from 'resend';
 import { contactFormSchema } from '@/schemas/contact';
 
 // Initialize Resend with API key
-// In production, use environment variable
 const resend = new Resend(process.env.RESEND_API_KEY || 'mock_api_key');
+
+// Get email addresses from environment variables
+const fromEmail = process.env.FROM_EMAIL || 'no-reply@example.com';
+const toEmail = process.env.TO_EMAIL || 'info@luziafrika.com';
 
 export async function POST(request: NextRequest) {
   try {
@@ -20,6 +23,7 @@ export async function POST(request: NextRequest) {
     // If we're in development mode or testing, log instead of sending
     if (process.env.NODE_ENV === 'development' || !process.env.RESEND_API_KEY) {
       console.log('Would send email with data:', validatedData);
+      console.log('Email configuration:', { fromEmail, toEmail, resendApiKey: process.env.RESEND_API_KEY ? 'Set' : 'Not set' });
       
       return NextResponse.json({ 
         success: true, 
@@ -29,8 +33,8 @@ export async function POST(request: NextRequest) {
     
     // Send the email using Resend
     const emailResponse = await resend.emails.send({
-      from: 'onboarding@resend.dev', // Use a verified domain in production
-      to: 'info@luziafrika.com', // Replace with your recipient email
+      from: fromEmail, 
+      to: toEmail,
       subject: `New Contact Form Submission from ${name}`,
       text: `
         Name: ${name}
