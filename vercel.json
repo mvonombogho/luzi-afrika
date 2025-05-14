@@ -23,6 +23,17 @@
     }
   ],
   "env": {
-    "NEXT_SKIP_TYPECHECK": "1"
-  }
+    "NEXT_SKIP_TYPECHECK": "1",
+    "ENABLE_ISR_FALLBACK": "true"
+  },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next",
+      "config": {
+        "outputMode": "standalone",
+        "buildCommand": "bash ./vercel-build.sh"
+      }
+    }
+  ]
 }
